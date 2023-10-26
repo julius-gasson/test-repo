@@ -50,7 +50,7 @@ def quiz():
     return render_template("quiz.html", questions=questions)
 
 def get_score(user_answers, answers):
-    return sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
+    sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
