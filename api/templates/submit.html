@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Submission</title>
+</head>
+<body>
+    <h1>Quiz Submission</h1>
+    
+    <h2>Your Answers:</h2>
+    <ul>
+        {% for i in range(user_answers|length) %}
+            <li>{{ questions[i] }}: {{ user_answers[i] }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Your Score:</h2>
+    <p>{{ score }}/{{ questions|length }}</p>
+</body>
+</html>

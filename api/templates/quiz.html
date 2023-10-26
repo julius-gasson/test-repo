@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz Questions</title>
+    <title>Quiz</title>
 </head>
-<body style="background-color: #f7f7f7; font-family: Arial, sans-serif; text-align: center;">
-    <h1 style="color: #333; padding: 20px;">Quiz Questions</h1>
-    <form style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); margin: 0 auto; width: 60%;">
-        <ol style="list-style-type: decimal; padding-left: 20px; text-align: left;">
+<body>
+    <h1>Quiz Questions</h1>
+    <form action="/submit" method="post">
+        <ol>
             <li>
                 <label for="q1">What country has the highest life expectancy?</label><br>
                 <input type="text" id="q1" name="q1"><br><br>
@@ -28,7 +28,7 @@
                 <input type="text" id="q5" name="q5"><br><br>
             </li>
             <li>
-                <label for="q6">Who was the Ancient Greek God of the Sun?</label><br>
+                <label for "q6">Who was the Ancient Greek God of the Sun?</label><br>
                 <input type="text" id="q6" name="q6"><br><br>
             </li>
             <li>
@@ -68,7 +68,7 @@
                 <input type="text" id="q15" name="q15"><br><br>
             </li>
         </ol>
-        <input type="submit" value="Submit" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>

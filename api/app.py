@@ -1,63 +1,59 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+# Quiz questions and answers
+questions = [
+    "What country has the highest life expectancy?",
+    "Where would you be if you were standing on the Spanish Steps?",
+    "Which language has more native speakers: English or Spanish?",
+    "What is the most common surname in the United States?",
+    "What disease commonly spread on pirate ships?",
+    "Who was the Ancient Greek God of the Sun?",
+    "What was the name of the crime boss who was head of the feared Chicago Outfit?",
+    "What year was the United Nations established?",
+    "Who has won the most total Academy Awards?",
+    "What artist has the most streams on Spotify?",
+    "How many minutes are in a full week?",
+    "What car manufacturer had the highest revenue in 2020?",
+    "What company was originally called 'Cadabra'?",
+    "How many faces does a Dodecahedron have?",
+    "Queen guitarist Brian May is also an expert in what scientific field?",
+]
 
-@app.route("/")
-def hello_world():
-    return render_template("index.html")
+answers = [
+    "Hong Kong",
+    "Rome",
+    "Spanish",
+    "Smith",
+    "Scurvy",
+    "Apollo",
+    "Al Capone",
+    "1945",
+    "Walt Disney",
+    "Drake",
+    "10,080",
+    "Volkswagen",
+    "Amazon",
+    "12",
+    "Astrophysics",
+]
 
-def get_score(answers):
-    assert len(answers) == 15
-    score = 0
-    if answers[0] == "hong kong": score += 1
-    if answers[1] == "rome": score += 1
-    if answers[2] == "spanish": score += 1
-    if answers[3] == "smith": score += 1
-    if answers[4] == "scurvy": score += 1
-    if answers[5] == "apollo": score += 1
-    if answers[6] == "al capone": score += 1
-    if answers[7] == "1945": score += 1
-    if answers[8] in ["walt disney", "disney"]: score += 1
-    if answers[9] == "drake": score += 1
-    if answers[10] in ["10,080", "10 080", "10080"]: score += 1
-    if answers[11] == "volkswagen": score += 1
-    if answers[12] == "amazon": score += 1
-    if answers[13] == "12": score += 1
-    if answers[14] == "astrophysics": score += 1
-    return score
+@app.route("/", methods=["GET", "POST"])
+def quiz():
+    if request.method == "POST":
+        user_answers = []
+        for i in range(len(questions)):
+            user_answer = request.form.get(f"q{i + 1}")
+            user_answers.append(user_answer)
+        return redirect(url_for("submit", answers=user_answers))
+    return render_template("quiz.html", questions=questions)
 
-@app.route("/submit", methods=["POST"])
+@app.route("/submit", methods=["GET"])
 def submit():
-    
-    for i in range(1, 16):
-        question_key = f"q{i}"
-        answer = request.form.get(question_key)
-        answers.append(answer.lower())
-    score = get_score(answers)
-
-    for i in range(15):
-        globals()[f'q{i+1}'] = answers[i]
-    
-    return render_template("hello.html", 
-    q1 = q1,
-    q2 = q2,
-    q3 = q3,
-    q4 = q4,
-    q5 = q5,
-    q6 = q6,
-    q7 = q7,
-    q8 = q8,
-    q9 = q9,
-    q10 = q10,
-    q11 = q11,
-    q12 = q12,
-    q13 = q13,
-    q14 = q14,
-    q15 = q15,
-    total_score = score
-    )
-
+    user_answers = request.args.getlist("answers")
+    score = sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
+    return render_template("submit.html", user_answers=user_answers, score=score)
 
 def process_query(input):
     if input == "dinosaurs":
@@ -70,3 +66,9 @@ def process_query(input):
 def query():
     query_param = request.args.get('q')
     return process_query(query_param)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
