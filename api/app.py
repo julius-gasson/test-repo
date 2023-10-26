@@ -64,6 +64,7 @@ def submit():
         user_answer = request.form.get(f"q{i + 1}")
         user_answers.append(user_answer)
     score = get_score(user_answers, answers)
+    user_answers = []
     return render_template("submit.html", score=score)
 
 
