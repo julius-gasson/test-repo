@@ -9,22 +9,27 @@ def test_knows_about_dinosaurs():
 def test_does_not_know_about_asteroids():
     assert process_query("asteroids") == "Unknown"
 
+
 def client():
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
 
+
 def test_quiz_route_get(client):
     response = client.get('/')
     assert response.status_code == 200
 
+
 def test_quiz_route_post(client):
     response = client.post('/')
-    assert response.status_code == 302  # Expect a redirect
+    assert response.status_code == 302
+
 
 def test_submit_route_get(client):
     response = client.get('/submit')
     assert response.status_code == 200
+
 
 def test_submit_route_post(client):
     response = client.post('/submit')
