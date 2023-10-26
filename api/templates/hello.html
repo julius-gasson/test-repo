@@ -1,5 +1,23 @@
-<body>
-<h1>Hello {{ name }}!</h1>
-<p>Name: {{ name }}</p>
-<p>Age: {{ age }}</p>
+<body style="background-color: #292b2c; color: #fff; font-family: Arial, sans-serif; text-align: center;">
+    <ol style="background-color: #333; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); margin: 0 auto; width: 60%; list-style-type: decimal; padding-left: 20px; text-align: left;">
+        <li>Answer: Hong Kong {{" ✓" if (q1.lower() == "hong kong") else " X" }}</li>
+        <li>Answer: Rome {{" ✓" if (q2.lower() == "rome") else " X" }}</li>
+        <li>Answer: Spanish {{" ✓" if (q3.lower() == "spanish") else " X" }}</li>
+        <li>Answer: Smith {{" ✓" if (q4.lower() == "smith") else " X" }}</li>
+        <li>Answer: Scurvy {{" ✓" if (q5.lower() == "scurvy") else " X" }}</li>
+        <li>Answer: Apollo {{" ✓" if (q6.lower() == "apollo") else " X" }}</li>
+        <li>Answer: Al Capone {{" ✓" if (q7.lower() == "al capone") else " X" }}</li>
+        <li>Answer: 1945 {{" ✓" if (q8 == "1945") else " X" }}</li>
+        <li>Answer: Walt Disney {{" ✓" if (q9.lower() in ["walt disney", "disney"]) else " X" }}</li>
+        <li>Answer: Drake {{" ✓" if (q10.lower() == "drake") else " X" }}</li>
+        <li>Answer: 10,080 {{" ✓" if (q11 in ["10,080", "10 080", "10080"]) else " X" }}</li>
+        <li>Answer: Volkswagen {{" ✓" if (q12.lower() == "volkswagen") else " X" }}</li>
+        <li>Answer: Amazon {{" ✓" if (q13.lower() == "amazon") else " X" }}</li>
+        <li>Answer: 12 {{" ✓" if (q14 == "12") else " X" }}</li>
+        <li>Answer: Astrophysics {{" ✓" if (q15.lower() == "astrophysics") else " X" }}</li>
+    </ol>
+    <br><br>
+    <h3>
+        Total score: {{score}}/15<br>
+    </h3>
 </body>
