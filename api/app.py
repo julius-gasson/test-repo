@@ -10,7 +10,7 @@ questions = [
     "What is the most common surname in the United States?",
     "What disease commonly spread on pirate ships?",
     "Who was the Ancient Greek God of the Sun?",
-    "What was the name of the crime boss who was head of the feared Chicago Outfit?",
+    "What was the name of the crime boss who ran the feared Chicago Outfit?",
     "What year was the United Nations established?",
     "Who has won the most total Academy Awards?",
     "What artist has the most streams on Spotify?",
@@ -41,19 +41,23 @@ answers = [
 
 user_answers = []  # Moved this list outside of the route function
 
+
 @app.route("/", methods=["GET", "POST"])
 def quiz():
     global user_answers  # Use the global user_answers list
     if request.method == "POST":
-        #user_answers = []  # Reset the user_answers list when the form is submitted
+        user_answers = []
         return redirect(url_for("submit"))
     return render_template("quiz.html", questions=questions)
 
+
 def get_score(user_answers, answers):
     if len(user_answers) == 15:
-        return sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
+        return sum(1 for user, correct in zip(user_answers, answers)
+                   if user.lower() == correct.lower())
     else:
         return -1
+
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
@@ -62,6 +66,7 @@ def submit():
         user_answers.append(user_answer)
     score = get_score(user_answers, answers)
     return render_template("submit.html", score=score)
+
 
 def process_query(input):
     if input == "dinosaurs":
@@ -74,4 +79,3 @@ def process_query(input):
 def query():
     query_param = request.args.get('q')
     return process_query(query_param)
-
