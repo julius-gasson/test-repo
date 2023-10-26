@@ -46,9 +46,6 @@ def quiz():
     global user_answers  # Use the global user_answers list
     if request.method == "POST":
         #user_answers = []  # Reset the user_answers list when the form is submitted
-        for i in range(len(questions)):
-            user_answer = request.form.get(f"q{i + 1}")
-            user_answers.append(user_answer)
         return redirect(url_for("submit"))
     return render_template("quiz.html", questions=questions)
 
@@ -60,6 +57,9 @@ def get_score(user_answers, answers):
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
+    for i in range(15):
+        user_answer = request.form.get(f"q{i + 1}")
+        user_answers.append(user_answer)
     score = get_score(user_answers, answers)
     return render_template("submit.html", score=score)
 
