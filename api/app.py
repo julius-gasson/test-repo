@@ -46,7 +46,7 @@ def quiz():
         for i in range(len(questions)):
             user_answer = request.form.get(f"q{i + 1}")
             user_answers.append(user_answer)
-        return redirect(url_for("submit", answers=user_answers))
+        return redirect(url_for("submit", answers=user_answers, questions=questions))
     return render_template("quiz.html", questions=questions)
 
 def get_score(user_answers, answers):
@@ -56,7 +56,7 @@ def get_score(user_answers, answers):
 def submit():
     user_answers = request.args.getlist("answers")
     score = get_score(user_answers, answers)
-    return render_template("submit.html", user_answers=user_answers, score=score)
+    return render_template("submit.html", user_answers=user_answers, questions=questions, score=score)
 
 def process_query(input):
     if input == "dinosaurs":
