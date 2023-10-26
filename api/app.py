@@ -22,7 +22,7 @@ questions = [
 ]
 
 answers = [
-    "Hong Kong",
+    "Japan",
     "Rome",
     "Spanish",
     "Smith",
@@ -32,7 +32,7 @@ answers = [
     "1945",
     "Walt Disney",
     "Drake",
-    "10,080",
+    "10080",
     "Volkswagen",
     "Amazon",
     "12",
@@ -55,8 +55,8 @@ def get_score(user_answers, answers):
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     user_answers = request.args.getlist("answers")
-    score = sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
-    return render_template("submit.html", user_answers=user_answers, score=score)
+    score = get_score(user_answers, answers)
+    return render_template("submit.html", user_answers=user_answers, score=10)
 
 def process_query(input):
     if input == "dinosaurs":
