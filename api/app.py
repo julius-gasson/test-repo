@@ -49,7 +49,7 @@ def quiz():
         return redirect(url_for("submit", answers=user_answers))
     return render_template("quiz.html", questions=questions)
 
-@app.route("/submit", methods=["GET"])
+@app.route("/submit", methods=["GET", "POST"])
 def submit():
     user_answers = request.args.getlist("answers")
     score = sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
@@ -60,15 +60,3 @@ def process_query(input):
         return "Dinosaurs ruled the Earth 200 million years ago"
     if input == "asteroids":
         return "Unknown"
-
-
-@app.route("/query", methods=["GET"])
-def query():
-    query_param = request.args.get('q')
-    return process_query(query_param)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
