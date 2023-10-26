@@ -1,22 +1,22 @@
 from app import app, process_query, get_score
 import pytest
-    user_answers = [
-        "Japan",
-        "Rome",
-        "Spanish",
-        "Smith",
-        "scurvy",
-        "Apollo",
-        "Al Capone",
-        "1945",
-        "x",
-        "Eminem",
-        "10080",
-        "Volkswagen",
-        "x",
-        "12",
-        "x"
-    ]
+user_answers = [
+    "Japan",
+    "Rome",
+    "Spanish",
+    "Smith",
+    "scurvy",
+    "Apollo",
+    "Al Capone",
+    "1945",
+    "x",
+    "Eminem",
+    "10080",
+    "Volkswagen",
+    "x",
+    "12",
+    "x"
+]
 
 
 def test_knows_about_dinosaurs():
