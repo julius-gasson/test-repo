@@ -46,17 +46,17 @@ def quiz():
         for i in range(len(questions)):
             user_answer = request.form.get(f"q{i + 1}")
             user_answers.append(user_answer)
-        return redirect(url_for("submit", answers=answers, questions=questions))
+        return redirect(url_for("submit", answers=user_answers))
     return render_template("quiz.html", questions=questions)
 
 def get_score(user_answers, answers):
-    sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
+    return sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     user_answers = request.args.getlist("answers")
-    score = get_score(user_answers, answers)
-    return render_template("submit.html", answers=answers, questions=questions, score=score)
+    score = sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
+    return render_template("submit.html", user_answers=user_answers, score=score)
 
 def process_query(input):
     if input == "dinosaurs":
