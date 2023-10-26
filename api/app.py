@@ -40,9 +40,9 @@ answers = [
 ]
 
 @app.route("/", methods=["GET", "POST"])
+user_answers = []
 def quiz():
     if request.method == "POST":
-        user_answers = []
         for i in range(len(questions)):
             user_answer = request.form.get(f"q{i + 1}")
             user_answers.append(user_answer)
@@ -54,9 +54,9 @@ def get_score(user_answers, answers):
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
-    user_answers = request.args.getlist("answers")
+    #user_answers = request.args.getlist("answers")
     score = get_score(user_answers, answers)
-    return render_template("submit.html", user_answers=user_answers, score=len(user_answers))
+    return render_template("submit.html", user_answers=user_answers, score=score)
 
 def process_query(input):
     if input == "dinosaurs":
