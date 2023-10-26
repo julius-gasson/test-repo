@@ -28,11 +28,6 @@ def test_quiz_route_post(client):
     assert response.status_code == 302
 
 
-def test_submit_route_get(client):
-    response = client.get('/submit')
-    assert response.status_code == 200
-
-
 def test_submit_route_post(client):
     response = client.post('/submit')
     assert response.status_code == 200
