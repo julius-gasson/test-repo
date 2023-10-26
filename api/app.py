@@ -46,6 +46,7 @@ user_answers = []  # Moved this list outside of the route function
 def quiz():
     global user_answers  # Use the global user_answers list
     if request.method == "POST":
+        user_answers = []
         return redirect(url_for("submit"))
     return render_template("quiz.html", questions=questions)
 
@@ -64,7 +65,7 @@ def submit():
         user_answer = request.form.get(f"q{i + 1}")
         user_answers.append(user_answer)
     score = get_score(user_answers, answers)
-    user_answers = []
+    
     return render_template("submit.html", score=score)
 
 
