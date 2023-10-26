@@ -8,8 +8,8 @@
     
     <h2>Your Answers:</h2>
     <ul>
-        {% for i in range(15) %}
-            <li>{{ questions[i] }}: {{ user_answers[i] }}</li>
+        {% for i in range(len() %}
+            <li>{{ questions[i] }}: {{ answers[i] }}</li>
         {% endfor %}
     </ul>
     
@@ -17,3 +17,4 @@
     <p>{{ score }}/{{ 15 }}</p>
 </body>
 </html>
+

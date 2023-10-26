@@ -50,13 +50,13 @@ def quiz():
     return render_template("quiz.html", questions=questions)
 
 def get_score(user_answers, answers):
-    sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
+    return sum(1 for user, correct in zip(user_answers, answers) if user.lower() == correct.lower())
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     user_answers = request.args.getlist("answers")
     score = get_score(user_answers, answers)
-    return render_template("submit.html", user_answers=user_answers, questions=questions, score=score)
+    return render_template("submit.html", answers=answers, questions=questions, score=score)
 
 def process_query(input):
     if input == "dinosaurs":
