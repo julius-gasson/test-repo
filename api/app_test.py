@@ -88,6 +88,5 @@ def test_submit_route_get_with_sample_answers(client):
     assert response.status_code == 200
 
 
-
 def score_calculated_correctly():
     assert get_score(user_answers) == 11
