@@ -1,4 +1,5 @@
 from app import app, process_query, get_score
+import pytest
 
 
 def test_knows_about_dinosaurs():
@@ -10,6 +11,7 @@ def test_does_not_know_about_asteroids():
     assert process_query("asteroids") == "Unknown"
 
 
+@pytest.fixture
 def client():
     app.config['TESTING'] = True
     with app.test_client() as client:
