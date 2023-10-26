@@ -29,23 +29,11 @@ def get_score(answers):
 
 @app.route("/submit", methods=["POST"])
 def submit():
-    answers = []
-    answers.append(q1.lower())
-    answers.append(q2.lower())
-    answers.append(q3.lower())
-    answers.append(q4.lower())
-    answers.append(q5.lower())
-    answers.append(q6.lower())
-    answers.append(q7.lower())
-    answers.append(q8)
-    answers.append(q9.lower())
-    answers.append(q10.lower())
-    answers.append(q11)
-    answers.append(q12.lower())
-    answers.append(q13.lower())
-    answers.append(q14)
-    answers.append(q15.lower())
-
+    
+    for i in range(1, 16):
+        question_key = f"q{i}"
+        answer = request.form.get(question_key)
+        answers.append(answer.lower())
     score = get_score(answers)
     
     return render_template("hello.html", 
