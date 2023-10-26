@@ -35,6 +35,9 @@ def submit():
         answer = request.form.get(question_key)
         answers.append(answer.lower())
     score = get_score(answers)
+
+    for i in range(15):
+        globals()[f'q{i+1}'] = answers[i]
     
     return render_template("hello.html", 
     q1 = q1,
