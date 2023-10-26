@@ -52,7 +52,7 @@ def quiz():
 
 
 def get_score(user_answers, answers):
-    user_answers = user_answer[-15:]
+    user_answers = user_answers[-15:]
     if len(user_answers) == 15:
         return sum(1 for user, correct in zip(user_answers, answers)
                    if user.lower() == correct.lower())
