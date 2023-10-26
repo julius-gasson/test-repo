@@ -55,7 +55,7 @@ def get_score(user_answers, answers):
         return sum(1 for user, correct in zip(user_answers, answers)
                    if user.lower() == correct.lower())
     else:
-        return -1
+        return len(user_answers)
 
 
 @app.route("/submit", methods=["GET", "POST"])
